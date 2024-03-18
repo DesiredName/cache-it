@@ -1,0 +1,16 @@
+{
+    "name": "cache-it",
+    "description": "Use cache on pages to store data",
+    "keywords": [
+        "caches",
+        "cache",
+        "es",
+        "storage"
+    ],
+    "main": "index.html",
+    "author": {
+        "name": "Krasnov Anton",
+        "url": "https://github.com/DesiredName"
+    },
+    "license": "ISC"
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cache It</title>
+    <style>
+        body {
+            align-items: center;
+            background-color: #222;
+            color: #ccc;
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            margin: 0;
+            min-height: 100vh;
+            padding: 0;
+            white-space: pre;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="status">loading...</div>
+        <div id="entries"></div>
+    </div>
+
+    <script type="module">
+        if (caches == null) {
+            /* warn user of old browser if needed */
+        } else {
+            const CACHE_NAME = 'static_cache_v1';
+            const cache = await caches.open(CACHE_NAME);
+            
+            await cache.addAll([
+                '/assets/random.html',
+                '/assets/random.json',
+                '/assets/random.txt',
+            ]);
+            
+            const entries = await cache.matchAll();
+            
+            document.getElementById('status').textContent = 'done!'
+            document.getElementById('entries').textContent = entries.map(({
+                ok,
+                url,
+            }) => JSON.stringify({
+                ok,
+                url,
+            })).join('\n');
+        }
+    </script>
+</body>
+</html>
